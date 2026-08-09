@@ -1,0 +1,12 @@
+{
+  "name": "muhammadjonov-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MUHAMMADJONOV — AI, ta'lim, football va creator vositalari platformasi.",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

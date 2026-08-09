@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MUHAMMADJONOV — G'oyadan natijagacha</title>
+<meta name="description" content="Ta'lim, AI va kreativ vositalarni bitta zamonaviy platformada. AI Tools, Ta'lim, Football va Creator vositalari — bitta ilovada.">
+<meta property="og:title" content="MUHAMMADJONOV — G'oyadan natijagacha">
+<meta property="og:description" content="Ta'lim, AI va kreativ vositalarni bitta zamonaviy platformada.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0E13">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script>
+  // Prevent inline form submits / navigation reloads anywhere in the doc (no backend attached yet)
+  document.addEventListener('submit', e => e.preventDefault(), true);
+</script>
+<style>
+:root{
+  --bg:#0B0E13;
+  --bg-elev:#101520;
+  --surface:rgba(255,255,255,0.045);
+  --surface-strong:rgba(255,255,255,0.075);
+  --border:rgba(255,255,255,0.09);
+  --text:#EEF1F5;
+  --text-dim:#9BA3B0;
+  --text-faint:#616B79;
+  --spark:#F5A623;   /* idea */
+  --spark-soft:#F5A62333;
+  --result:#2FD077;  /* result / pitch */
+  --result-soft:#2FD07733;
+  --danger:#F0567A;
+  --radius:20px;
+  --radius-sm:14px;
+  --shadow-glow: 0 0 60px -20px rgba(245,166,35,0.25), 0 0 80px -30px rgba(47,208,119,0.2);
+}
+[data-theme="light"]{
+  --bg:#F6F5F2;
+  --bg-elev:#FFFFFF;
+  --surface:rgba(11,14,19,0.035);
+  --surface-strong:rgba(11,14,19,0.06);
+  --border:rgba(11,14,19,0.09);
+  --text:#12151C;
+  --text-dim:#565F6C;
+  --text-faint:#8A93A0;
+  --shadow-glow: 0 0 60px -25px rgba(245,166,35,0.35), 0 0 80px -35px rgba(47,208,119,0.3);
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  transition:background .35s ease, color .35s ease;
+  padding-bottom:78px; /* bottom nav clearance on mobile */
+}
+@media(min-width:1024px){ body{ padding-bottom:0; } }
+h1,h2,h3,h4,.display{ font-family:'Unbounded',sans-serif; letter-spacing:-0.01em; }
+.mono{ font-family:'JetBrains Mono',monospace; }
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer;}
+::selection{ background:var(--spark); color:#12151C; }
+:focus-visible{ outline:2px solid var(--spark); outline-offset:3px; border-radius:6px; }
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+}
+
+.wrap{ max-width:1180px; margin:0 auto; padding:0 20px; }
+.section{ padding:64px 0; position:relative; }
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--spark); margin-bottom:14px;
+}
+.eyebrow::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--spark); box-shadow:0 0 10px var(--spark);}
+.sec-title{ font-size:clamp(24px,5.5vw,36px); font-weight:700; margin:0 0 8px; line-height:1.15; }
+.sec-sub{ color:var(--text-dim); font-size:15px; margin:0 0 32px; max-width:560px; line-height:1.55; }
+
+/* glass card */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s, background .35s;
+}
+.card:active{ transform:scale(0.98); }
+@media(hover:hover){
+  .card-hover:hover{ transform:translateY(-4px); border-color:rgba(245,166,35,0.35); background:var(--surface-strong); }
+}
+
+/* buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:14px 22px; border-radius:999px; font-weight:600; font-size:15px;
+  border:1px solid transparent; transition:transform .2s, box-shadow .2s, opacity .2s;
+  min-height:48px;
+}
+.btn:active{ transform:scale(.96); }
+.btn-primary{
+  background:linear-gradient(135deg,var(--spark),#ff8a3d);
+  color:#171008; box-shadow:0 8px 24px -8px rgba(245,166,35,.55);
+}
+.btn-secondary{
+  background:var(--surface); border-color:var(--border); color:var(--text);
+}
+.btn-block{ width:100%; }
+.btn-sm{ padding:9px 16px; font-size:13px; min-height:36px; }
+.btn-ghost{ background:transparent; color:var(--text-dim); border:1px solid var(--border); }
+
+/* badges */
+.badge{ font-size:10.5px; font-weight:700; letter-spacing:.04em; padding:3px 9px; border-radius:999px; text-transform:uppercase; }
+.badge-free{ background:var(--result-soft); color:var(--result); }
+.badge-pro{ background:var(--spark-soft); color:var(--spark); }
+
+/* top nav (desktop) */
+.topnav{
+  position:sticky; top:0; z-index:40;
+  background:color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.topnav-inner{ display:flex; align-items:center; justify-content:space-between; padding:14px 20px; max-width:1180px; margin:0 auto; }
+.logo{ display:flex; align-items:center; gap:10px; font-weight:800; font-size:16px; letter-spacing:.02em; }
+.logo-mark{
+  width:34px; height:34px; border-radius:10px; flex-shrink:0;
+  background:linear-gradient(135deg,var(--spark),var(--result));
+  display:flex; align-items:center; justify-content:center; font-family:'Unbounded'; font-weight:700; color:#0B0E13; font-size:14px;
+}
+.desktop-links{ display:none; gap:28px; font-size:14px; font-weight:500; color:var(--text-dim); }
+.desktop-links a{ transition:color .2s; }
+.desktop-links a:hover{ color:var(--text); }
+@media(min-width:1024px){ .desktop-links{ display:flex; } }
+.nav-actions{ display:flex; align-items:center; gap:6px; }
+@media(max-width:420px){
+  .logo span:not(.logo-mark){ display:none; }
+  .seg button{ padding:6px 8px; font-size:11px; }
+  .nav-actions{ gap:4px; }
+}
+
+/* bottom nav (mobile) */
+.bottomnav{
+  position:fixed; bottom:0; left:0; right:0; z-index:50;
+  background:color-mix(in srgb, var(--bg-elev) 92%, transparent);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+  display:flex; justify-content:space-around;
+}
+@media(min-width:1024px){ .bottomnav{ display:none; } }
+.bn-item{
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  color:var(--text-faint); font-size:10.5px; font-weight:600; padding:6px 10px; border-radius:12px;
+  min-width:56px; transition:color .2s, background .2s;
+}
+.bn-item.active{ color:var(--spark); background:var(--spark-soft); }
+.bn-item svg{ width:20px; height:20px; }
+
+/* hero */
+.hero{ padding:36px 0 20px; position:relative; overflow:hidden; }
+.hero-bg{
+  position:absolute; inset:-20% -10% auto -10%; height:520px; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(circle at 25% 20%, var(--spark-soft), transparent 55%),
+    radial-gradient(circle at 75% 40%, var(--result-soft), transparent 55%);
+  filter:blur(20px);
+  animation:drift 16s ease-in-out infinite alternate;
+}
+@keyframes drift{ from{ transform:translate(0,0) scale(1);} to{ transform:translate(2%, 3%) scale(1.06);} }
+.hero-inner{ position:relative; z-index:1; text-align:center; }
+.hero h1{ font-size:clamp(32px,9vw,58px); line-height:1.05; margin:0 0 16px; font-weight:800; }
+.hero h1 .grad{ background:linear-gradient(100deg,var(--spark),var(--result)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.hero p.sub{ color:var(--text-dim); font-size:clamp(15px,3.6vw,18px); max-width:520px; margin:0 auto 30px; line-height:1.6; }
+.hero-ctas{ display:flex; flex-direction:column; gap:12px; max-width:340px; margin:0 auto; }
+@media(min-width:480px){ .hero-ctas{ flex-direction:row; max-width:none; justify-content:center; } }
+
+/* spark -> result signature */
+.spark-track{
+  margin:44px auto 8px; max-width:320px; display:flex; align-items:center; gap:10px;
+  padding:14px 18px; border-radius:999px; position:relative;
+}
+.spark-node{ width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
+.spark-node.a{ background:var(--spark-soft); color:var(--spark); }
+.spark-node.b{ background:var(--result-soft); color:var(--result); }
+.spark-line{ flex:1; height:2px; background:var(--border); position:relative; overflow:hidden; border-radius:2px; }
+.spark-line::after{
+  content:""; position:absolute; top:0; left:-40%; width:40%; height:100%;
+  background:linear-gradient(90deg,transparent,var(--spark),var(--result),transparent);
+  animation:travel 2.6s ease-in-out infinite;
+}
+@keyframes travel{ 0%{ left:-40%; } 100%{ left:100%; } }
+.spark-caption{ text-align:center; font-size:12px; color:var(--text-faint); margin-top:10px; }
+
+.founder-note{
+  max-width:520px; margin:36px auto 0; text-align:center; padding:18px 22px;
+  font-size:14px; color:var(--text-dim); font-style:italic; line-height:1.6;
+}
+
+/* grids */
+.grid{ display:grid; gap:14px; grid-template-columns:1fr; }
+@media(min-width:640px){ .grid-2{ grid-template-columns:1fr 1fr; } }
+@media(min-width:900px){ .grid-3{ grid-template-columns:repeat(3,1fr); } .grid-4{ grid-template-columns:repeat(4,1fr);} }
+
+/* tool card */
+.tool-card{ padding:18px; display:flex; flex-direction:column; gap:10px; }
+.tool-icon{
+  width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+  background:var(--surface-strong); font-size:19px; border:1px solid var(--border);
+}
+.tool-name{ font-weight:700; font-size:15px; margin:0; }
+.tool-desc{ font-size:13px; color:var(--text-dim); line-height:1.5; margin:0; flex:1; }
+.tool-foot{ display:flex; align-items:center; justify-content:space-between; margin-top:4px; }
+
+/* tabs */
+.tabbar{ display:inline-flex; gap:4px; padding:4px; background:var(--surface); border:1px solid var(--border); border-radius:999px; margin-bottom:22px; overflow-x:auto; max-width:100%; }
+.tab{ padding:9px 16px; border-radius:999px; font-size:13px; font-weight:600; color:var(--text-dim); background:transparent; border:none; white-space:nowrap; transition:all .25s; }
+.tab.active{ background:linear-gradient(135deg,var(--spark),var(--result)); color:#12151C; }
+
+/* stats */
+.stat-num{ font-family:'Unbounded'; font-size:clamp(26px,6vw,38px); font-weight:700; background:linear-gradient(100deg,var(--spark),var(--result)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.stat-label{ color:var(--text-dim); font-size:12.5px; margin-top:4px; }
+.stat-note{ font-size:11px; color:var(--text-faint); text-align:center; margin-top:22px; }
+
+/* pricing */
+.price-card{ padding:26px 22px; position:relative; }
+.price-card.featured{ border-color:var(--spark); box-shadow:var(--shadow-glow); }
+.price-amt{ font-family:'Unbounded'; font-size:34px; font-weight:700; margin:10px 0 2px; }
+.price-list{ list-style:none; padding:0; margin:18px 0 22px; display:flex; flex-direction:column; gap:9px; font-size:13.5px; color:var(--text-dim); }
+.price-list li{ display:flex; gap:8px; align-items:flex-start; }
+.price-list li::before{ content:"✓"; color:var(--result); font-weight:700; flex-shrink:0; }
+
+/* faq */
+.faq-item{ border-bottom:1px solid var(--border); }
+.faq-q{ width:100%; text-align:left; background:none; border:none; color:var(--text); padding:18px 4px; display:flex; justify-content:space-between; align-items:center; font-size:14.5px; font-weight:600; }
+.faq-a{ max-height:0; overflow:hidden; transition:max-height .35s ease; font-size:13.5px; color:var(--text-dim); line-height:1.6; }
+.faq-a-inner{ padding:0 4px 18px; }
+.faq-icon{ transition:transform .3s; flex-shrink:0; color:var(--text-faint); }
+.faq-item.open .faq-icon{ transform:rotate(45deg); color:var(--spark); }
+
+/* usage pill */
+.usage-pill{
+  display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:999px;
+  background:var(--surface); border:1px solid var(--border); font-size:12.5px; font-weight:600; color:var(--text-dim);
+}
+.usage-dot{ width:6px; height:6px; border-radius:50%; background:var(--result); }
+.usage-pill.low .usage-dot{ background:var(--danger); }
+.usage-pill.low{ color:var(--danger); border-color:rgba(240,86,122,.35); }
+
+/* modal */
+.modal-backdrop{
+  position:fixed; inset:0; background:rgba(4,6,10,0.66); backdrop-filter:blur(4px);
+  z-index:100; display:flex; align-items:flex-end; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity .3s;
+}
+.modal-backdrop.open{ opacity:1; pointer-events:auto; }
+@media(min-width:640px){ .modal-backdrop{ align-items:center; } }
+.modal{
+  width:100%; max-width:520px; background:var(--bg-elev); border:1px solid var(--border);
+  border-radius:24px 24px 0 0; padding:22px 20px calc(22px + env(safe-area-inset-bottom));
+  max-height:88vh; overflow-y:auto;
+  transform:translateY(24px); transition:transform .35s cubic-bezier(.2,.8,.2,1);
+}
+@media(min-width:640px){ .modal{ border-radius:24px; transform:translateY(10px); } }
+.modal-backdrop.open .modal{ transform:translateY(0); }
+.modal-handle{ width:36px; height:4px; border-radius:99px; background:var(--border); margin:0 auto 16px; display:block; }
+@media(min-width:640px){ .modal-handle{ display:none; } }
+.modal-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.modal-close{ width:32px; height:32px; border-radius:50%; background:var(--surface); border:1px solid var(--border); color:var(--text-dim); display:flex; align-items:center; justify-content:center; }
+
+textarea, input[type=text]{
+  width:100%; background:var(--surface); border:1px solid var(--border); border-radius:14px;
+  padding:13px 14px; color:var(--text); font-family:inherit; font-size:14.5px; resize:vertical;
+}
+textarea:focus, input[type=text]:focus{ border-color:var(--spark); }
+label.field-label{ font-size:12px; font-weight:600; color:var(--text-dim); margin-bottom:6px; display:block; }
+
+.result-box{
+  margin-top:16px; padding:16px; border-radius:14px; background:var(--surface-strong); border:1px solid var(--border);
+  font-size:14px; line-height:1.65; white-space:pre-wrap;
+}
+.skeleton{ height:14px; border-radius:6px; background:linear-gradient(90deg,var(--surface),var(--surface-strong),var(--surface)); background-size:200% 100%; animation:shimmer 1.3s infinite; margin-bottom:8px; }
+@keyframes shimmer{ 0%{background-position:200% 0;} 100%{background-position:-200% 0;} }
+
+/* scroll reveal */
+.reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
+.reveal.in{ opacity:1; transform:translateY(0); }
+
+/* football */
+.player-card{ padding:16px; display:flex; align-items:center; gap:12px; }
+.player-avatar{ width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,var(--spark),var(--result)); display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Unbounded'; font-size:15px; color:#0B0E13; flex-shrink:0; }
+.gallery-tile{ aspect-ratio:1; border-radius:14px; background:linear-gradient(135deg,var(--surface-strong),var(--surface)); display:flex; align-items:center; justify-content:center; font-size:22px; border:1px solid var(--border); }
+
+/* footer */
+footer{ border-top:1px solid var(--border); padding:40px 0 100px; }
+@media(min-width:1024px){ footer{ padding-bottom:40px; } }
+.footer-grid{ display:grid; gap:28px; grid-template-columns:1fr; }
+@media(min-width:768px){ .footer-grid{ grid-template-columns:1.4fr 1fr 1fr 1fr; } }
+.footer-col h5{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--text-faint); margin:0 0 12px; }
+.footer-col a{ display:block; font-size:13.5px; color:var(--text-dim); margin-bottom:9px; }
+.footer-bottom{ margin-top:36px; padding-top:20px; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:14px; font-size:12.5px; color:var(--text-faint); }
+@media(min-width:640px){ .footer-bottom{ flex-direction:row; align-items:center; justify-content:space-between; } }
+
+/* switches */
+.seg{ display:inline-flex; background:var(--surface); border:1px solid var(--border); border-radius:999px; padding:3px; }
+.seg button{ border:none; background:transparent; padding:7px 11px; border-radius:999px; font-size:12px; font-weight:700; color:var(--text-dim); }
+.seg button.active{ background:var(--text); color:var(--bg); }
+
+.icon-btn{ width:38px; height:38px; border-radius:12px; background:var(--surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--text-dim); flex-shrink:0; }
+
+.toast{
+  position:fixed; bottom:96px; left:50%; transform:translateX(-50%) translateY(20px); z-index:200;
+  background:var(--text); color:var(--bg); padding:11px 20px; border-radius:999px; font-size:13px; font-weight:600;
+  opacity:0; pointer-events:none; transition:all .3s;
+}
+@media(min-width:1024px){ .toast{ bottom:30px; } }
+.toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+.empty-state{ text-align:center; padding:44px 20px; color:var(--text-faint); }
+.empty-state .ei{ font-size:34px; margin-bottom:10px; }
+
+.admin-preview{ padding:18px; }
+.admin-row{ display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--border); font-size:13.5px; }
+.admin-row:last-child{ border-bottom:none; }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP NAV ============ -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="logo"><span class="logo-mark">M</span><span data-i18n="brand">MUHAMMADJONOV</span></div>
+    <div class="desktop-links">
+      <a href="#ai" data-i18n="nav_ai">AI Tools</a>
+      <a href="#education" data-i18n="nav_edu">Ta'lim</a>
+      <a href="#football" data-i18n="nav_football">Football</a>
+      <a href="#creator" data-i18n="nav_creator">Creator</a>
+      <a href="#pricing" data-i18n="nav_pricing">Narxlar</a>
+    </div>
+    <div class="nav-actions">
+      <div class="seg" id="langSeg">
+        <button data-lang="uz" class="active">UZ</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="ru">RU</button>
+      </div>
+      <div class="seg" id="themeSeg">
+        <button data-theme-choice="dark" class="active" aria-label="Dark">🌙</button>
+        <button data-theme-choice="light" aria-label="Light">☀️</button>
+        <button data-theme-choice="system" aria-label="System">🖥️</button>
+      </div>
+      <button class="icon-btn" id="profileBtn" aria-label="Profil" onclick="openModal('profileModal')">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow" style="justify-content:center;display:flex" data-i18n="hero_eyebrow">Yangi platforma · Beta</div>
+    <h1><span data-i18n="hero_h1a">G'oyadan</span> — <span class="grad" data-i18n="hero_h1b">natijagacha</span>.</h1>
+    <p class="sub" data-i18n="hero_sub">Ta'lim, AI va kreativ vositalarni bitta zamonaviy platformada.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-primary" onclick="scrollToId('ai')">
+        <span data-i18n="hero_cta1">Boshlash</span> →
+      </button>
+      <button class="btn btn-secondary" onclick="scrollToId('about')" data-i18n="hero_cta2">Platformani ko'rish</button>
+    </div>
+
+    <div class="card spark-track">
+      <div class="spark-node a">💡</div>
+      <div class="spark-line"></div>
+      <div class="spark-node b">✅</div>
+    </div>
+    <div class="spark-caption" data-i18n="spark_caption">G'oya → AI → Natija. O'rtacha bir necha soniya.</div>
+
+    <p class="founder-note" data-i18n="founder_note">"Bu shunchaki sayt emas. Bu mening g'oyamni real mahsulotga aylantirish yo'lim."</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ FEATURED TOOL ============ -->
+<section class="section wrap">
+  <div class="reveal card card-hover" style="padding:22px;display:flex;flex-direction:column;gap:16px;background:linear-gradient(135deg, var(--spark-soft), var(--result-soft));border-color:rgba(245,166,35,.3)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+      <div>
+        <div class="eyebrow" data-i18n="featured_eyebrow">Bugungi tavsiya</div>
+        <h3 style="margin:0 0 6px;font-size:19px;" data-i18n="featured_title">AI Dars Rejasi Generatori</h3>
+        <p style="margin:0;color:var(--text-dim);font-size:13.5px;max-width:420px;" data-i18n="featured_desc">Mavzuni kiriting — bir daqiqada tayyor dars rejasi oling.</p>
+      </div>
+      <span class="badge badge-free" data-i18n="badge_free">Free</span>
+    </div>
+    <button class="btn btn-primary" style="align-self:flex-start" onclick="openTool('lesson')">
+      <span data-i18n="try_now">Sinab ko'rish</span> →
+    </button>
+  </div>
+</section>
+
+<!-- ============ AI TOOLS ============ -->
+<section class="section wrap" id="ai">
+  <div class="reveal">
+    <div class="eyebrow" data-i18n="ai_eyebrow">AI Vositalar</div>
+    <h2 class="sec-title" data-i18n="ai_title">Har bir vazifa uchun AI</h2>
+    <p class="sec-sub" data-i18n="ai_sub">9 ta AI vosita — matndan futboldan post yozishgacha.</p>
+  </div>
+  <div class="grid grid-3" id="aiToolsGrid"></div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section class="section wrap" id="education">
+  <div class="reveal">
+    <div class="eyebrow" data-i18n="edu_eyebrow">Ta'lim</div>
+    <h2 class="sec-title" data-i18n="edu_title">O'qituvchi va o'quvchilar uchun</h2>
+    <p class="sec-sub" data-i18n="edu_sub">Dars tayyorlashdan test yechishgacha — barchasi telefonda qulay.</p>
+  </div>
+  <div class="tabbar" role="tablist">
+    <button class="tab active" data-tab="teacher" data-i18n="tab_teacher">O'qituvchi</button>
+    <button class="tab" data-tab="student" data-i18n="tab_student">O'quvchi</button>
+  </div>
+  <div class="grid grid-3" id="eduGrid"></div>
+</section>
+
+<!-- ============ FOOTBALL ============ -->
+<section class="section wrap" id="football">
+  <div class="reveal">
+    <div class="eyebrow" data-i18n="fb_eyebrow">Football</div>
+    <h2 class="sec-title" data-i18n="fb_title">Futbol ixlosmandlari uchun</h2>
+    <p class="sec-sub" data-i18n="fb_sub">Yangiliklar, o'yinchilar, generatorlar — bir joyda.</p>
+  </div>
+  <div class="tabbar">
+    <button class="tab active" data-fbtab="news" data-i18n="fb_tab_news">Yangiliklar</button>
+    <button class="tab" data-fbtab="players" data-i18n="fb_tab_players">O'yinchilar</button>
+    <button class="tab" data-fbtab="tools" data-i18n="fb_tab_tools">Generatorlar</button>
+    <button class="tab" data-fbtab="gallery" data-i18n="fb_tab_gallery">Galereya</button>
+  </div>
+  <div id="fbNews" class="grid"></div>
+  <div id="fbPlayers" class="grid grid-2" style="display:none"></div>
+  <div id="fbTools" class="grid grid-3" style="display:none"></div>
+  <div id="fbGallery" class="grid" style="display:none;grid-template-columns:repeat(3,1fr);"></div>
+</section>
+
+<!-- ============ CREATOR TOOLS ============ -->
+<section class="section wrap" id="creator">
+  <div class="reveal">
+    <div class="eyebrow" data-i18n="cr_eyebrow">Creator</div>
+    <h2 class="sec-title" data-i18n="cr_title">Instagram uchun vositalar</h2>
+    <p class="sec-sub" data-i18n="cr_sub">Kiriting → Generatsiya → Natija → Nusxalash.</p>
+  </div>
+  <div class="grid grid-3" id="crGrid"></div>
+</section>
+
+<!-- ============ STATISTICS ============ -->
+<section class="section wrap">
+  <div class="reveal card" style="padding:32px 22px;">
+    <div class="grid grid-3" style="text-align:center">
+      <div><div class="stat-num" data-count="10000">0</div><div class="stat-label" data-i18n="stat_gen">Generatsiyalar</div></div>
+      <div><div class="stat-num" data-count="2500">0</div><div class="stat-label" data-i18n="stat_users">Foydalanuvchilar</div></div>
+      <div><div class="stat-num" data-count="15">0</div><div class="stat-label" data-i18n="stat_tools">AI vositalar</div></div>
+    </div>
+    <p class="stat-note" data-i18n="stat_note">* Demo ko'rsatkichlar — real analitika ulanguncha namunaviy ma'lumot.</p>
+  </div>
+</section>
+
+<!-- ============ ABOUT / FOUNDER ============ -->
+<section class="section wrap" id="about">
+  <div class="reveal card" style="padding:30px 22px;">
+    <div class="eyebrow" data-i18n="about_eyebrow">Founder</div>
+    <h2 class="sec-title" style="font-size:24px" data-i18n="about_title">MUHAMMADJONOV</h2>
+    <p style="color:var(--text-dim);font-size:14.5px;line-height:1.7;max-width:620px" data-i18n="about_p1">MUHAMMADJONOV — bu g'oyalarni real raqamli mahsulotlarga aylantirish loyihasi.</p>
+    <p style="color:var(--text);font-size:15px;line-height:1.7;max-width:620px;font-weight:600" data-i18n="about_p2">Men mukammal boshlashni kutmadim. Boshladim va har kuni yaxshilayapman.</p>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="section wrap" id="pricing">
+  <div class="reveal">
+    <div class="eyebrow" data-i18n="price_eyebrow">Narxlar</div>
+    <h2 class="sec-title" data-i18n="price_title">Bepul boshlang, keyin o'sing</h2>
+    <p class="sec-sub" data-i18n="price_sub">Majburiy to'lov yo'q. Har doim ham bepul reja mavjud.</p>
+  </div>
+  <div class="grid grid-2">
+    <div class="reveal card price-card">
+      <div class="badge badge-free" data-i18n="badge_free">Free</div>
+      <div class="price-amt">0 <span style="font-size:14px;color:var(--text-faint)" data-i18n="price_permonth">so'm/oy</span></div>
+      <ul class="price-list">
+        <li data-i18n="price_free_1">3 ta bepul AI generatsiya</li>
+        <li data-i18n="price_free_2">Barcha asosiy vositalarga kirish</li>
+        <li data-i18n="price_free_3">Natijalarni nusxalash</li>
+        <li data-i18n="price_free_4">Reklama bilan</li>
+      </ul>
+      <button class="btn btn-secondary btn-block" data-i18n="price_free_cta">Hozir boshlash</button>
+    </div>
+    <div class="reveal card price-card featured">
+      <div class="badge badge-pro" data-i18n="badge_pro">Pro</div>
+      <div class="price-amt">49 000 <span style="font-size:14px;color:var(--text-faint)" data-i18n="price_permonth">so'm/oy</span></div>
+      <ul class="price-list">
+        <li data-i18n="price_pro_1">Cheksiz AI generatsiya</li>
+        <li data-i18n="price_pro_2">Barcha Pro vositalar</li>
+        <li data-i18n="price_pro_3">Reklamasiz</li>
+        <li data-i18n="price_pro_4">Tezroq ishlov berish</li>
+        <li data-i18n="price_pro_5">Tarixni saqlash</li>
+      </ul>
+      <button class="btn btn-primary btn-block" onclick="openModal('upgradeModal')" data-i18n="price_pro_cta">Pro'ga o'tish</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section wrap" id="faq">
+  <div class="reveal">
+    <div class="eyebrow" data-i18n="faq_eyebrow">Savollar</div>
+    <h2 class="sec-title" data-i18n="faq_title">Ko'p so'raladigan savollar</h2>
+  </div>
+  <div id="faqList" class="reveal"></div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="section wrap">
+  <div class="reveal card" style="padding:40px 24px;text-align:center;background:linear-gradient(135deg,var(--spark-soft),var(--result-soft));border-color:rgba(245,166,35,.3)">
+    <h2 class="sec-title" style="margin-bottom:20px" data-i18n="final_cta_title">Keyingi g'oyangizni bugun boshlang.</h2>
+    <button class="btn btn-primary" onclick="scrollToId('ai')">
+      <span data-i18n="final_cta_btn">Bepul boshlash</span> →
+    </button>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="wrap">
+  <div class="footer-grid">
+    <div>
+      <div class="logo" style="margin-bottom:10px"><span class="logo-mark">M</span><span data-i18n="brand">MUHAMMADJONOV</span></div>
+      <p style="font-size:13px;color:var(--text-faint);max-width:280px;line-height:1.6" data-i18n="footer_tagline">G'oyadan natijagacha — AI, ta'lim va kreativ vositalar bitta joyda.</p>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer_platform">Platforma</h5>
+      <a href="#ai" data-i18n="nav_ai">AI Tools</a>
+      <a href="#education" data-i18n="nav_edu">Ta'lim</a>
+      <a href="#football" data-i18n="nav_football">Football</a>
+      <a href="#creator" data-i18n="nav_creator">Creator</a>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer_company">Kompaniya</h5>
+      <a href="#about" data-i18n="footer_about">Founder</a>
+      <a href="#pricing" data-i18n="nav_pricing">Narxlar</a>
+      <a href="#faq" data-i18n="footer_faq">Savollar</a>
+      <a href="#" onclick="openModal('adminModal');return false;" data-i18n="footer_admin">Admin (demo)</a>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer_lang">Til</h5>
+      <div class="seg" id="langSeg2">
+        <button data-lang="uz" class="active">UZ</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="ru">RU</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Muhammadjonov. <span data-i18n="footer_rights">Barcha huquqlar himoyalangan.</span></span>
+    <span class="mono" style="opacity:.6">v0.1.0-beta · frontend prototype</span>
+  </div>
+</footer>
+
+<!-- ============ BOTTOM NAV (mobile) ============ -->
+<nav class="bottomnav" aria-label="Asosiy navigatsiya">
+  <a class="bn-item active" href="#top" data-bn="home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+    <span data-i18n="bn_home">Bosh</span>
+  </a>
+  <a class="bn-item" href="#ai" data-bn="ai">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.8L21 11l-6.6 2.2L12 20l-2.4-6.8L3 11l6.6-2.2z"/></svg>
+    <span data-i18n="bn_ai">AI</span>
+  </a>
+  <a class="bn-item" href="#education" data-bn="tools">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+    <span data-i18n="bn_tools">Ta'lim</span>
+  </a>
+  <a class="bn-item" href="#football" data-bn="football">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+    <span data-i18n="bn_football">Football</span>
+  </a>
+  <a class="bn-item" href="#" data-bn="profile" onclick="openModal('profileModal');return false;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+    <span data-i18n="bn_profile">Profil</span>
+  </a>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<!-- ============ TOOL MODAL ============ -->
+<div class="modal-backdrop" id="toolModalBackdrop" onclick="if(event.target===this)closeModal('toolModalBackdrop')">
+  <div class="modal">
+    <span class="modal-handle"></span>
+    <div class="modal-head">
+      <div>
+        <div style="font-size:11px;color:var(--text-faint);font-weight:700;text-transform:uppercase;letter-spacing:.06em" id="toolModalTag">AI TOOL</div>
+        <h3 style="margin:2px 0 0;font-size:18px" id="toolModalTitle">Vosita</h3>
+      </div>
+      <button class="modal-close" onclick="closeModal('toolModalBackdrop')" aria-label="Yopish">✕</button>
+    </div>
+
+    <div id="usagePillWrap" style="margin-bottom:14px"></div>
+
+    <div id="toolFormArea">
+      <label class="field-label" id="toolInputLabel" data-i18n="tool_input_label">Mavzu yoki matn kiriting</label>
+      <textarea id="toolInput" rows="3" placeholder="Masalan: Fotosintez mavzusida 7-sinf uchun..." oninput="clearFieldError()"></textarea>
+      <button type="button" class="badge" id="toolExampleHint" onclick="fillExample()" style="margin-top:8px;background:var(--surface-strong);color:var(--text-dim);border:1px dashed var(--border);padding:6px 12px;cursor:pointer;text-transform:none;font-weight:500;letter-spacing:0;display:inline-block;max-width:100%;text-align:left;white-space:normal;line-height:1.4"></button>
+      <div id="toolInputError" style="display:none;color:var(--danger);font-size:12px;margin-top:6px;font-weight:600"></div>
+      <button class="btn btn-primary btn-block" style="margin-top:14px" id="generateBtn" onclick="generateResult()">
+        <span data-i18n="generate_btn">Generatsiya qilish</span> ✨
+      </button>
+    </div>
+
+    <div id="toolResultArea" style="display:none">
+      <div id="loadingSkeleton" style="display:none">
+        <div class="skeleton" style="width:90%"></div>
+        <div class="skeleton" style="width:75%"></div>
+        <div class="skeleton" style="width:82%"></div>
+        <div style="font-size:12px;color:var(--text-faint);margin-top:4px" id="loadingLabel">AI ishlamoqda…</div>
+      </div>
+      <div id="errorBox" style="display:none;text-align:center;padding:18px 10px">
+        <div style="font-size:28px;margin-bottom:8px">⚠️</div>
+        <div style="font-size:13.5px;color:var(--text-dim);margin-bottom:14px" id="errorText">Xatolik yuz berdi.</div>
+        <button class="btn btn-secondary" onclick="generateResult()"><span data-i18n="again_btn">Yana</span> ↻</button>
+      </div>
+      <div class="result-box" id="resultText" style="display:none"></div>
+      <div style="display:none;gap:10px;margin-top:14px" id="resultActions">
+        <button class="btn btn-secondary" style="flex:1" onclick="copyResult()"><span data-i18n="copy_btn">Nusxalash</span> 📋</button>
+        <button class="btn btn-ghost" style="flex:1" onclick="resetTool()"><span data-i18n="again_btn">Yana</span> ↻</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ UPGRADE MODAL ============ -->
+<div class="modal-backdrop" id="upgradeModal" onclick="if(event.target===this)closeModal('upgradeModal')">
+  <div class="modal" style="text-align:center">
+    <span class="modal-handle"></span>
+    <div style="font-size:38px;margin-bottom:10px">🚀</div>
+    <h3 style="margin:0 0 8px" data-i18n="upgrade_title">Bepul limitga yetdingiz</h3>
+    <p style="color:var(--text-dim);font-size:13.5px;margin:0 0 20px;line-height:1.6" data-i18n="upgrade_desc">3 ta bepul generatsiyadan foydalandingiz. Pro rejaga o'ting va cheksiz foydalaning — yoki keyingi safar qayta urinib ko'ring.</p>
+    <button class="btn btn-primary btn-block" onclick="toast('Demo rejim: to\'lov ulanmagan'); closeModal('upgradeModal')"><span data-i18n="upgrade_cta">Pro rejani ko'rish</span></button>
+    <button class="btn btn-ghost btn-block" style="margin-top:10px" onclick="closeModal('upgradeModal')" data-i18n="upgrade_later">Keyinroq</button>
+  </div>
+</div>
+
+<!-- ============ PROFILE MODAL ============ -->
+<div class="modal-backdrop" id="profileModal" onclick="if(event.target===this)closeModal('profileModal')">
+  <div class="modal">
+    <span class="modal-handle"></span>
+    <div class="modal-head">
+      <h3 style="margin:0;font-size:18px" data-i18n="profile_title">Profil</h3>
+      <button class="modal-close" onclick="closeModal('profileModal')">✕</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+      <div class="player-avatar" style="width:56px;height:56px;font-size:18px" id="profileAvatar">?</div>
+      <div style="flex:1;min-width:0">
+        <input type="text" id="profileNameInput" data-i18n-placeholder="profile_name_placeholder" placeholder="Ismingiz" oninput="updateProfileName()" style="background:none;border:none;padding:0;font-weight:700;font-size:15px;width:100%;color:var(--text)">
+        <span class="badge badge-free" data-i18n="badge_free">Free</span>
+      </div>
+    </div>
+    <div class="card" style="padding:14px;margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;font-size:13.5px">
+        <span data-i18n="profile_usage" style="color:var(--text-dim)">Qolgan bepul foydalanish</span>
+        <strong id="profileUsageCount">3 / 3</strong>
+      </div>
+    </div>
+    <div class="empty-state" id="historyEmpty">
+      <div class="ei">🗂️</div>
+      <div data-i18n="history_empty">Hali generatsiya tarixi yo'q. Birinchi AI vositangizni sinab ko'ring.</div>
+    </div>
+    <div id="historyList" style="display:flex;flex-direction:column;gap:8px"></div>
+    <button class="btn btn-secondary btn-block" style="margin-top:16px" onclick="closeModal('profileModal')" data-i18n="close_btn">Yopish</button>
+  </div>
+</div>
+
+<!-- ============ ADMIN DEMO MODAL ============ -->
+<div class="modal-backdrop" id="adminModal" onclick="if(event.target===this)closeModal('adminModal')">
+  <div class="modal">
+    <span class="modal-handle"></span>
+    <div class="modal-head">
+      <h3 style="margin:0;font-size:18px">Admin panel <span style="font-size:11px;color:var(--text-faint);font-weight:400">(demo)</span></h3>
+      <button class="modal-close" onclick="closeModal('adminModal')">✕</button>
+    </div>
+    <div class="card admin-preview">
+      <div class="admin-row"><span>Foydalanuvchilar</span><strong>2,500+</strong></div>
+      <div class="admin-row"><span>AI vositalar</span><strong>15</strong></div>
+      <div class="admin-row"><span>Pro foydalanuvchilar</span><strong>—</strong></div>
+      <div class="admin-row"><span>Reklama joylari</span><strong>3 faol</strong></div>
+      <div class="admin-row"><span>Football postlar</span><strong>—</strong></div>
+    </div>
+    <p style="font-size:12px;color:var(--text-faint);margin-top:14px;line-height:1.6">Bu — real backend ulanguncha ko'rsatiladigan namunaviy panel. Haqiqiy admin funksiyalari uchun server va ma'lumotlar bazasi kerak.</p>
+  </div>
+</div>
+
+<script>
+/* ================= i18n ================= */
+const dict = {
+  uz:{
+    brand:"MUHAMMADJONOV",
+    nav_ai:"AI Tools", nav_edu:"Ta'lim", nav_football:"Football", nav_creator:"Creator", nav_pricing:"Narxlar",
+    hero_eyebrow:"Yangi platforma · Beta", hero_h1a:"G'oyadan", hero_h1b:"natijagacha",
+    hero_sub:"Ta'lim, AI va kreativ vositalarni bitta zamonaviy platformada.",
+    hero_cta1:"Boshlash", hero_cta2:"Platformani ko'rish",
+    spark_caption:"G'oya → AI → Natija. O'rtacha bir necha soniya.",
+    founder_note:"\"Bu shunchaki sayt emas. Bu mening g'oyamni real mahsulotga aylantirish yo'lim.\"",
+    featured_eyebrow:"Bugungi tavsiya", featured_title:"AI Dars Rejasi Generatori", featured_desc:"Mavzuni kiriting — bir daqiqada tayyor dars rejasi oling.",
+    badge_free:"Free", badge_pro:"Pro", try_now:"Sinab ko'rish",
+    ai_eyebrow:"AI Vositalar", ai_title:"Har bir vazifa uchun AI", ai_sub:"9 ta AI vosita — matndan futboldan post yozishgacha.",
+    edu_eyebrow:"Ta'lim", edu_title:"O'qituvchi va o'quvchilar uchun", edu_sub:"Dars tayyorlashdan test yechishgacha — barchasi telefonda qulay.",
+    tab_teacher:"O'qituvchi", tab_student:"O'quvchi",
+    fb_eyebrow:"Football", fb_title:"Futbol ixlosmandlari uchun", fb_sub:"Yangiliklar, o'yinchilar, generatorlar — bir joyda.",
+    fb_tab_news:"Yangiliklar", fb_tab_players:"O'yinchilar", fb_tab_tools:"Generatorlar", fb_tab_gallery:"Galereya",
+    cr_eyebrow:"Creator", cr_title:"Instagram uchun vositalar", cr_sub:"Kiriting → Generatsiya → Natija → Nusxalash.",
+    stat_gen:"Generatsiyalar", stat_users:"Foydalanuvchilar", stat_tools:"AI vositalar",
+    stat_note:"* Demo ko'rsatkichlar — real analitika ulanguncha namunaviy ma'lumot.",
+    about_eyebrow:"Founder", about_title:"MUHAMMADJONOV",
+    about_p1:"MUHAMMADJONOV — bu g'oyalarni real raqamli mahsulotlarga aylantirish loyihasi.",
+    about_p2:"Men mukammal boshlashni kutmadim. Boshladim va har kuni yaxshilayapman.",
+    price_eyebrow:"Narxlar", price_title:"Bepul boshlang, keyin o'sing", price_sub:"Majburiy to'lov yo'q. Har doim ham bepul reja mavjud.",
+    price_permonth:"so'm/oy",
+    price_free_1:"3 ta bepul AI generatsiya", price_free_2:"Barcha asosiy vositalarga kirish", price_free_3:"Natijalarni nusxalash", price_free_4:"Reklama bilan", price_free_cta:"Hozir boshlash",
+    price_pro_1:"Cheksiz AI generatsiya", price_pro_2:"Barcha Pro vositalar", price_pro_3:"Reklamasiz", price_pro_4:"Tezroq ishlov berish", price_pro_5:"Tarixni saqlash", price_pro_cta:"Pro'ga o'tish",
+    faq_eyebrow:"Savollar", faq_title:"Ko'p so'raladigan savollar",
+    final_cta_title:"Keyingi g'oyangizni bugun boshlang.", final_cta_btn:"Bepul boshlash",
+    footer_tagline:"G'oyadan natijagacha — AI, ta'lim va kreativ vositalar bitta joyda.",
+    footer_platform:"Platforma", footer_company:"Kompaniya", footer_about:"Founder", footer_faq:"Savollar", footer_admin:"Admin (demo)", footer_lang:"Til", footer_rights:"Barcha huquqlar himoyalangan.",
+    bn_home:"Bosh", bn_ai:"AI", bn_tools:"Ta'lim", bn_football:"Football", bn_profile:"Profil",
+    tool_input_label:"Mavzu yoki matn kiriting", generate_btn:"Generatsiya qilish", copy_btn:"Nusxalash", again_btn:"Yana",
+    upgrade_title:"Bepul limitga yetdingiz", upgrade_desc:"3 ta bepul generatsiyadan foydalandingiz. Pro rejaga o'ting va cheksiz foydalaning — yoki keyingi safar qayta urinib ko'ring.",
+    upgrade_cta:"Pro rejani ko'rish", upgrade_later:"Keyinroq",
+    profile_title:"Profil", profile_usage:"Qolgan bepul foydalanish", history_empty:"Hali generatsiya tarixi yo'q. Birinchi AI vositangizni sinab ko'ring.", close_btn:"Yopish", profile_name_placeholder:"Ismingiz",
+    usage_remaining:(n)=>`${n} / 3 bepul foydalanish qoldi`,
+    toast_copied:"Nusxalandi!", toast_limit:"Bepul limit tugadi", example_label:"Misol uchun",
+  },
+  en:{
+    brand:"MUHAMMADJONOV",
+    nav_ai:"AI Tools", nav_edu:"Education", nav_football:"Football", nav_creator:"Creator", nav_pricing:"Pricing",
+    hero_eyebrow:"New platform · Beta", hero_h1a:"From idea", hero_h1b:"to result",
+    hero_sub:"Education, AI and creative tools in one modern platform.",
+    hero_cta1:"Get started", hero_cta2:"See the platform",
+    spark_caption:"Idea → AI → Result. Usually a few seconds.",
+    founder_note:"\"This isn't just a website. It's my path to turning an idea into a real product.\"",
+    featured_eyebrow:"Today's pick", featured_title:"AI Lesson Plan Generator", featured_desc:"Enter a topic — get a ready lesson plan in a minute.",
+    badge_free:"Free", badge_pro:"Pro", try_now:"Try now",
+    ai_eyebrow:"AI Tools", ai_title:"An AI tool for every task", ai_sub:"9 AI tools — from text to football posts.",
+    edu_eyebrow:"Education", edu_title:"For teachers and students", edu_sub:"From lesson prep to quiz practice — all mobile-friendly.",
+    tab_teacher:"Teacher", tab_student:"Student",
+    fb_eyebrow:"Football", fb_title:"For football fans", fb_sub:"News, players, generators — all in one place.",
+    fb_tab_news:"News", fb_tab_players:"Players", fb_tab_tools:"Generators", fb_tab_gallery:"Gallery",
+    cr_eyebrow:"Creator", cr_title:"Tools for Instagram", cr_sub:"Input → Generate → Result → Copy.",
+    stat_gen:"Generations", stat_users:"Users", stat_tools:"AI tools",
+    stat_note:"* Demo figures — sample data until real analytics are connected.",
+    about_eyebrow:"Founder", about_title:"MUHAMMADJONOV",
+    about_p1:"MUHAMMADJONOV is a project turning ideas into real digital products.",
+    about_p2:"I didn't wait for a perfect start. I started, and I'm improving every day.",
+    price_eyebrow:"Pricing", price_title:"Start free, grow later", price_sub:"No forced payment. A free plan is always available.",
+    price_permonth:"/mo",
+    price_free_1:"3 free AI generations", price_free_2:"Access to all core tools", price_free_3:"Copy results", price_free_4:"Ad-supported", price_free_cta:"Start now",
+    price_pro_1:"Unlimited AI generations", price_pro_2:"All Pro tools", price_pro_3:"No ads", price_pro_4:"Faster processing", price_pro_5:"Saved history", price_pro_cta:"Go Pro",
+    faq_eyebrow:"FAQ", faq_title:"Frequently asked questions",
+    final_cta_title:"Start your next idea today.", final_cta_btn:"Start for free",
+    footer_tagline:"From idea to result — AI, education and creative tools in one place.",
+    footer_platform:"Platform", footer_company:"Company", footer_about:"Founder", footer_faq:"FAQ", footer_admin:"Admin (demo)", footer_lang:"Language", footer_rights:"All rights reserved.",
+    bn_home:"Home", bn_ai:"AI", bn_tools:"Learn", bn_football:"Football", bn_profile:"Profile",
+    tool_input_label:"Enter a topic or text", generate_btn:"Generate", copy_btn:"Copy", again_btn:"Again",
+    upgrade_title:"You've hit the free limit", upgrade_desc:"You've used 3 free generations. Go Pro for unlimited use — or try again next time.",
+    upgrade_cta:"View Pro plan", upgrade_later:"Later",
+    profile_title:"Profile", profile_usage:"Free uses remaining", history_empty:"No generation history yet. Try your first AI tool.", close_btn:"Close", profile_name_placeholder:"Your name",
+    usage_remaining:(n)=>`${n} / 3 free uses remaining`,
+    toast_copied:"Copied!", toast_limit:"Free limit reached", example_label:"For example",
+  },
+  ru:{
+    brand:"MUHAMMADJONOV",
+    nav_ai:"AI-инструменты", nav_edu:"Образование", nav_football:"Футбол", nav_creator:"Креатор", nav_pricing:"Тарифы",
+    hero_eyebrow:"Новая платформа · Бета", hero_h1a:"От идеи", hero_h1b:"до результата",
+    hero_sub:"Образование, AI и креативные инструменты на одной платформе.",
+    hero_cta1:"Начать", hero_cta2:"Смотреть платформу",
+    spark_caption:"Идея → AI → Результат. Обычно несколько секунд.",
+    founder_note:"«Это не просто сайт. Это мой путь превращения идеи в реальный продукт».",
+    featured_eyebrow:"Рекомендация дня", featured_title:"AI-генератор плана урока", featured_desc:"Введите тему — получите готовый план урока за минуту.",
+    badge_free:"Free", badge_pro:"Pro", try_now:"Попробовать",
+    ai_eyebrow:"AI-инструменты", ai_title:"AI для любой задачи", ai_sub:"9 AI-инструментов — от текста до постов о футболе.",
+    edu_eyebrow:"Образование", edu_title:"Для учителей и учеников", edu_sub:"От подготовки урока до тестов — удобно с телефона.",
+    tab_teacher:"Учитель", tab_student:"Ученик",
+    fb_eyebrow:"Футбол", fb_title:"Для любителей футбола", fb_sub:"Новости, игроки, генераторы — всё в одном месте.",
+    fb_tab_news:"Новости", fb_tab_players:"Игроки", fb_tab_tools:"Генераторы", fb_tab_gallery:"Галерея",
+    cr_eyebrow:"Креатор", cr_title:"Инструменты для Instagram", cr_sub:"Ввод → Генерация → Результат → Копирование.",
+    stat_gen:"Генераций", stat_users:"Пользователей", stat_tools:"AI-инструментов",
+    stat_note:"* Демо-показатели — до подключения реальной аналитики.",
+    about_eyebrow:"Основатель", about_title:"MUHAMMADJONOV",
+    about_p1:"MUHAMMADJONOV — проект превращения идей в реальные цифровые продукты.",
+    about_p2:"Я не ждал идеального старта. Я начал и улучшаю проект каждый день.",
+    price_eyebrow:"Тарифы", price_title:"Начните бесплатно", price_sub:"Без обязательной оплаты. Бесплатный план всегда доступен.",
+    price_permonth:"/мес",
+    price_free_1:"3 бесплатные AI-генерации", price_free_2:"Доступ ко всем базовым инструментам", price_free_3:"Копирование результатов", price_free_4:"С рекламой", price_free_cta:"Начать сейчас",
+    price_pro_1:"Безлимитные генерации", price_pro_2:"Все Pro-инструменты", price_pro_3:"Без рекламы", price_pro_4:"Быстрая обработка", price_pro_5:"Сохранение истории", price_pro_cta:"Перейти на Pro",
+    faq_eyebrow:"Вопросы", faq_title:"Часто задаваемые вопросы",
+    final_cta_title:"Начните свою следующую идею сегодня.", final_cta_btn:"Начать бесплатно",
+    footer_tagline:"От идеи до результата — AI, образование и креативные инструменты в одном месте.",
+    footer_platform:"Платформа", footer_company:"Компания", footer_about:"Основатель", footer_faq:"Вопросы", footer_admin:"Админ (демо)", footer_lang:"Язык", footer_rights:"Все права защищены.",
+    bn_home:"Главная", bn_ai:"AI", bn_tools:"Учёба", bn_football:"Футбол", bn_profile:"Профиль",
+    tool_input_label:"Введите тему или текст", generate_btn:"Генерировать", copy_btn:"Копировать", again_btn:"Ещё раз",
+    upgrade_title:"Бесплатный лимит исчерпан", upgrade_desc:"Вы использовали 3 бесплатные генерации. Перейдите на Pro — или попробуйте позже.",
+    upgrade_cta:"Смотреть тариф Pro", upgrade_later:"Позже",
+    profile_title:"Профиль", profile_usage:"Осталось бесплатных попыток", history_empty:"Истории генераций пока нет. Попробуйте первый AI-инструмент.", close_btn:"Закрыть", profile_name_placeholder:"Ваше имя",
+    usage_remaining:(n)=>`${n} / 3 бесплатных попыток осталось`,
+    toast_copied:"Скопировано!", toast_limit:"Бесплатный лимит исчерпан", example_label:"Например",
+  }
+};
+let currentLang = 'uz';
+function applyLang(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    const val = dict[lang][key];
+    if(typeof val === 'string') el.textContent = val;
+  });
+  document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active', b.getAttribute('data-lang')===lang));
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-placeholder');
+    if(dict[lang][key]) el.placeholder = dict[lang][key];
+  });
+  renderAiTools(); renderEduTools(); renderCreatorTools(); renderFootball(); renderFaq();
+  updateUsageUI();
+  if(activeToolKey){
+    activeToolExample = (toolNameLookup[activeToolKey] && toolNameLookup[activeToolKey].example && toolNameLookup[activeToolKey].example[lang]) || '';
+    updateExampleHint();
+  }
+}
+document.querySelectorAll('[data-lang]').forEach(btn=>btn.addEventListener('click',()=>applyLang(btn.getAttribute('data-lang'))));
+
+/* ================= theme (dark / light / system) ================= */
+let themeChoice = 'dark'; // what the user picked: dark | light | system
+const systemMedia = window.matchMedia('(prefers-color-scheme: dark)');
+function resolveTheme(){
+  if(themeChoice === 'system') return systemMedia.matches ? 'dark' : 'light';
+  return themeChoice;
+}
+function applyTheme(){
+  document.documentElement.setAttribute('data-theme', resolveTheme());
+  document.querySelectorAll('[data-theme-choice]').forEach(b=>b.classList.toggle('active', b.getAttribute('data-theme-choice')===themeChoice));
+}
+document.querySelectorAll('[data-theme-choice]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{ themeChoice = btn.getAttribute('data-theme-choice'); applyTheme(); });
+});
+systemMedia.addEventListener('change', ()=>{ if(themeChoice==='system') applyTheme(); });
+applyTheme();
+
+/* ================= data ================= */
+const aiTools = [
+  {id:'text',icon:'📝',free:true, name:{uz:"AI Matn Generatori",en:"AI Text Generator",ru:"AI-генератор текста"}, desc:{uz:"Har qanday mavzuda tayyor matn yozing.",en:"Write ready-made text on any topic.",ru:"Готовый текст на любую тему."}, example:{uz:"Yozgi ta'til haqida qisqa insho",en:"A short essay about summer vacation",ru:"Короткое эссе про летние каникулы"}},
+  {id:'lesson',icon:'🎓',free:true, name:{uz:"AI Dars Rejasi",en:"AI Lesson Planner",ru:"AI-план урока"}, desc:{uz:"Mavzu bo'yicha to'liq dars rejasi tuzing.",en:"Build a full lesson plan for a topic.",ru:"Полный план урока по теме."}, example:{uz:"Fotosintez mavzusida 7-sinf uchun dars rejasi",en:"A 7th-grade lesson plan on photosynthesis",ru:"План урока по фотосинтезу для 7 класса"}},
+  {id:'quiz',icon:'❓',free:true, name:{uz:"AI Test Generatori",en:"AI Quiz Generator",ru:"AI-генератор тестов"}, desc:{uz:"Bir necha soniyada test savollari yarating.",en:"Create quiz questions in seconds.",ru:"Вопросы для теста за секунды."}, example:{uz:"Jahon tarixi bo'yicha 10 ta test savoli",en:"10 quiz questions on world history",ru:"10 тестовых вопросов по всемирной истории"}},
+  {id:'pres',icon:'📊',free:false, name:{uz:"Taqdimot G'oyalari",en:"Presentation Ideas",ru:"Идеи презентаций"}, desc:{uz:"Taqdimot uchun struktura va g'oyalar.",en:"Structure and ideas for your slides.",ru:"Структура и идеи для слайдов."}, example:{uz:"Iqlim o'zgarishi mavzusida taqdimot",en:"A presentation on climate change",ru:"Презентация об изменении климата"}},
+  {id:'caption',icon:'📸',free:true, name:{uz:"Instagram Caption",en:"Instagram Caption",ru:"Подпись для Instagram"}, desc:{uz:"Post uchun jozibali caption yozing.",en:"Write an engaging caption for your post.",ru:"Цепляющая подпись для поста."}, example:{uz:"Tog'larga sayohat fotosurati uchun caption",en:"A caption for a mountain travel photo",ru:"Подпись к фото с путешествия в горы"}},
+  {id:'fbpost',icon:'⚽',free:false, name:{uz:"Football Post Generatori",en:"Football Post Generator",ru:"Генератор футбольных постов"}, desc:{uz:"O'yin yoki o'yinchi haqida post yozing.",en:"Write a post about a match or player.",ru:"Пост о матче или игроке."}, example:{uz:"Real Madrid - Barcelona o'yini haqida post",en:"A post about the Real Madrid vs Barcelona match",ru:"Пост о матче Реал Мадрид — Барселона"}},
+  {id:'summary',icon:'📄',free:true, name:{uz:"AI Qisqartiruvchi",en:"AI Summarizer",ru:"AI-сократитель"}, desc:{uz:"Uzun matnni qisqa va aniq qiling.",en:"Turn long text into a short summary.",ru:"Сделайте текст коротким и ясным."}, example:{uz:"[Uzun matningizni shu yerga joylashtiring]",en:"[Paste your long text here]",ru:"[Вставьте длинный текст сюда]"}},
+  {id:'translate',icon:'🌐',free:true, name:{uz:"AI Tarjimon",en:"AI Translator",ru:"AI-переводчик"}, desc:{uz:"Matnni tillar orasida tarjima qiling.",en:"Translate text between languages.",ru:"Перевод текста между языками."}, example:{uz:"\"Salom, ishlaringiz qalay?\" — ingliz tiliga tarjima qiling",en:"Translate \"Hello, how are you?\" into Uzbek",ru:"Переведите «Привет, как дела?» на английский"}},
+  {id:'study',icon:'🧠',free:false, name:{uz:"AI Study Assistant",en:"AI Study Assistant",ru:"AI-помощник в учёбе"}, desc:{uz:"Mavzuni tushuntirib beruvchi yordamchi.",en:"An assistant that explains any topic.",ru:"Помощник, объясняющий любую тему."}, example:{uz:"Nyuton qonunlarini sodda tilda tushuntir",en:"Explain Newton's laws in simple terms",ru:"Объясни законы Ньютона простыми словами"}},
+];
+const eduTools = {
+  teacher:[
+    {icon:'📋',name:{uz:"Dars rejasi generatori",en:"Lesson plan generator",ru:"Генератор плана урока"},desc:{uz:"Mavzu bo'yicha tayyor reja.",en:"Ready plan by topic.",ru:"Готовый план по теме."},free:true, example:{uz:"Matematika, kasrlar mavzusida 5-sinf uchun",en:"Math lesson on fractions for grade 5",ru:"Урок математики про дроби для 5 класса"}},
+    {icon:'❓',name:{uz:"Test generatori",en:"Quiz generator",ru:"Генератор тестов"},desc:{uz:"Ko'p tanlovli savollar.",en:"Multiple-choice questions.",ru:"Вопросы с вариантами."},free:true, example:{uz:"Biologiya, hujayra tuzilishi bo'yicha 5 ta savol",en:"5 questions on cell structure in biology",ru:"5 вопросов о строении клетки"}},
+    {icon:'📝',name:{uz:"Sinov generatori",en:"Test generator",ru:"Генератор контрольных"},desc:{uz:"To'liq sinov varag'i.",en:"Full test sheet.",ru:"Полный лист контрольной."},free:false, example:{uz:"Ingliz tili, Present Simple mavzusida sinov",en:"An English test on Present Simple",ru:"Контрольная по английскому: Present Simple"}},
+    {icon:'🏠',name:{uz:"Uyga vazifa generatori",en:"Homework generator",ru:"Генератор домашних заданий"},desc:{uz:"Sinf darajasiga mos topshiriqlar.",en:"Grade-appropriate assignments.",ru:"Задания по уровню класса."},free:true, example:{uz:"Geometriya, uchburchaklar bo'yicha topshiriq",en:"A geometry assignment on triangles",ru:"Задание по геометрии про треугольники"}},
+    {icon:'📊',name:{uz:"Taqdimot rejasi",en:"Presentation outline",ru:"План презентации"},desc:{uz:"Slaydlar uchun struktura.",en:"Structure for your slides.",ru:"Структура слайдов."},free:false, example:{uz:"Quyosh sistemasi mavzusida taqdimot rejasi",en:"A presentation outline on the solar system",ru:"План презентации о солнечной системе"}},
+    {icon:'📖',name:{uz:"Ta'limiy matn generatori",en:"Educational text generator",ru:"Генератор учебных текстов"},desc:{uz:"Mavzu bo'yicha o'quv matni.",en:"Learning text on a topic.",ru:"Учебный текст по теме."},free:true, example:{uz:"Suv aylanishi haqida o'quv matni",en:"An educational text about the water cycle",ru:"Учебный текст о круговороте воды"}},
+  ],
+  student:[
+    {icon:'🗓️',name:{uz:"O'qish rejalashtiruvchi",en:"Study planner",ru:"Планировщик учёбы"},desc:{uz:"Haftalik o'qish jadvali.",en:"Weekly study schedule.",ru:"Недельное расписание."},free:true, example:{uz:"Imtihonlarga 2 hafta qoldi, fizika va matematika",en:"2 weeks left before exams, physics and math",ru:"До экзаменов 2 недели, физика и математика"}},
+    {icon:'💡',name:{uz:"Mavzu tushuntiruvchi",en:"Topic explainer",ru:"Объяснение темы"},desc:{uz:"Har qanday mavzuni sodda tilda.",en:"Any topic in simple terms.",ru:"Любая тема простыми словами."},free:true, example:{uz:"Fotosintez nima va qanday ishlaydi?",en:"What is photosynthesis and how does it work?",ru:"Что такое фотосинтез и как он работает?"}},
+    {icon:'✅',name:{uz:"Test mashqi",en:"Quiz practice",ru:"Практика тестов"},desc:{uz:"O'z bilimingizni tekshiring.",en:"Check your knowledge.",ru:"Проверьте свои знания."},free:true, example:{uz:"Jahon tarixi bo'yicha mashq testlari",en:"Practice quiz on world history",ru:"Тренировочный тест по всемирной истории"}},
+    {icon:'📄',name:{uz:"Qisqartiruvchi",en:"Summarizer",ru:"Сокращение текста"},desc:{uz:"Matnni qisqa qiling.",en:"Shorten any text.",ru:"Сократите текст."},free:true, example:{uz:"[Darslik matnini shu yerga joylashtiring]",en:"[Paste your textbook text here]",ru:"[Вставьте текст учебника сюда]"}},
+    {icon:'🔤',name:{uz:"Lug'at yordamchisi",en:"Vocabulary helper",ru:"Помощник со словарём"},desc:{uz:"Yangi so'zlarni o'rganing.",en:"Learn new words.",ru:"Учите новые слова."},free:false, example:{uz:"IELTS uchun akademik so'zlar ro'yxati",en:"A list of academic words for IELTS",ru:"Список академических слов для IELTS"}},
+  ]
+};
+const crTools = [
+  {icon:'📸',name:{uz:"Caption generatori",en:"Caption generator",ru:"Генератор подписей"},desc:{uz:"Post uchun caption yozing.",en:"Write a post caption.",ru:"Подпись к посту."},free:true, example:{uz:"Yangi mahsulot lansiri uchun caption",en:"A caption for a new product launch",ru:"Подпись к запуску нового продукта"}},
+  {icon:'👤',name:{uz:"Bio generatori",en:"Bio generator",ru:"Генератор био"},desc:{uz:"Jozibali profil bio matni.",en:"An engaging profile bio.",ru:"Привлекательное био."},free:true, example:{uz:"Fitness kouch uchun Instagram bio",en:"An Instagram bio for a fitness coach",ru:"Био в Instagram для фитнес-тренера"}},
+  {icon:'#️⃣',name:{uz:"Hashtag tavsiyasi",en:"Hashtag suggestions",ru:"Подбор хэштегов"},desc:{uz:"Mavzuga mos hashtaglar.",en:"Hashtags matched to your topic.",ru:"Хэштеги по теме."},free:true, example:{uz:"Sayohat va fotografiya mavzusida",en:"For travel and photography content",ru:"Для контента о путешествиях и фото"}},
+  {icon:'💡',name:{uz:"Kontent g'oyasi",en:"Content idea generator",ru:"Идеи контента"},desc:{uz:"Yangi post g'oyalari.",en:"Fresh post ideas.",ru:"Новые идеи для постов."},free:true, example:{uz:"Kundalik motivatsiya kontenti uchun g'oyalar",en:"Ideas for daily motivation content",ru:"Идеи для ежедневного мотивационного контента"}},
+  {icon:'📖',name:{uz:"Story g'oyasi",en:"Story idea generator",ru:"Идеи для Stories"},desc:{uz:"Story uchun g'oyalar.",en:"Ideas for your stories.",ru:"Идеи для сторис."},free:false, example:{uz:"Mahsulot unboxing uchun story g'oyalari",en:"Story ideas for a product unboxing",ru:"Идеи сторис для распаковки товара"}},
+  {icon:'🏷️',name:{uz:"Post sarlavhasi",en:"Post title generator",ru:"Заголовок поста"},desc:{uz:"Diqqatni tortuvchi sarlavha.",en:"An attention-grabbing title.",ru:"Цепляющий заголовок."},free:true, example:{uz:"Mahsuldorlik haqida blog post uchun sarlavha",en:"A title for a blog post on productivity",ru:"Заголовок для поста о продуктивности"}},
+  {icon:'🎬',name:{uz:"Qisqa video g'oyasi",en:"Short-video idea",ru:"Идеи для Reels"},desc:{uz:"Reels/TikTok uchun g'oyalar.",en:"Ideas for Reels/TikTok.",ru:"Идеи для Reels/TikTok."},free:false, example:{uz:"30 soniyalik motivatsion Reels uchun g'oya",en:"An idea for a 30-second motivational Reel",ru:"Идея для 30-секундного мотивационного Reels"}},
+];
+const fbNewsData = [
+  {tag:{uz:"Transfer",en:"Transfer",ru:"Трансфер"}, title:{uz:"Mavsum oldi transferlar sharhi",en:"Pre-season transfer roundup",ru:"Обзор трансферов перед сезоном"}, time:"2 soat oldin"},
+  {tag:{uz:"Liga",en:"League",ru:"Лига"}, title:{uz:"Haftaning eng yaxshi o'yini tahlili",en:"Match of the week analysis",ru:"Разбор матча недели"}, time:"5 soat oldin"},
+  {tag:{uz:"Milliy jamoa",en:"National team",ru:"Сборная"}, title:{uz:"Saralash bosqichi jadvali e'lon qilindi",en:"Qualifiers schedule announced",ru:"Опубликовано расписание отбора"}, time:"1 kun oldin"},
+];
+const fbPlayers = [
+  {init:"CR",name:"Forward · #7", stat:"32 gol"},
+  {init:"MS",name:"Midfielder · #10", stat:"28 assist"},
+  {init:"EH",name:"Defender · #4", stat:"41 o'yin"},
+  {init:"KD",name:"Goalkeeper · #1", stat:"14 quruq to'r"},
+];
+const fbToolsData = [
+  {icon:'📝',name:{uz:"Match Post Generatori",en:"Match Post Generator",ru:"Генератор постов о матче"},desc:{uz:"O'yin natijasi haqida post.",en:"A post about the match result.",ru:"Пост об итогах матча."},free:true, example:{uz:"Barcelona 3-1 Real Madrid, hakamlik haqida",en:"Barcelona 3-1 Real Madrid, about the refereeing",ru:"Барселона 3-1 Реал Мадрид, о судействе"}},
+  {icon:'⚔️',name:{uz:"O'yinchi taqqoslash",en:"Player comparison",ru:"Сравнение игроков"},desc:{uz:"Ikki o'yinchini solishtiring.",en:"Compare two players.",ru:"Сравните двух игроков."},free:false, example:{uz:"Messi va Ronaldoni taqqoslang",en:"Compare Messi and Ronaldo",ru:"Сравните Месси и Роналду"}},
+  {icon:'🧠',name:{uz:"Football viktorina",en:"Football trivia",ru:"Футбольная викторина"},desc:{uz:"Bilimingizni sinab ko'ring.",en:"Test your knowledge.",ru:"Проверьте свои знания."},free:true, example:{uz:"2018-yilgi Jahon chempionati bo'yicha savollar",en:"Questions about the 2018 World Cup",ru:"Вопросы о чемпионате мира 2018"}},
+];
+const faqData = [
+  {q:{uz:"Platformadan qanday foydalanaman?",en:"How do I use the platform?",ru:"Как пользоваться платформой?"}, a:{uz:"Ro'yxatdan o'ting yoki mehmon sifatida kiring, kerakli AI vositani tanlang va mavzuingizni kiriting — natijani soniyalar ichida olasiz.",en:"Sign up or continue as a guest, pick the AI tool you need, and enter your topic — you'll get a result in seconds.",ru:"Зарегистрируйтесь или войдите как гость, выберите нужный AI-инструмент и введите тему — результат за секунды."}},
+  {q:{uz:"Nechta bepul foydalanish mumkin?",en:"How many free uses do I get?",ru:"Сколько бесплатных попыток доступно?"}, a:{uz:"Har bir yangi foydalanuvchi 3 ta bepul AI generatsiyaga ega bo'ladi.",en:"Every new user gets 3 free AI generations.",ru:"Каждый новый пользователь получает 3 бесплатные AI-генерации."}},
+  {q:{uz:"Premium nima beradi?",en:"What does Premium include?",ru:"Что даёт Premium?"}, a:{uz:"Cheksiz generatsiya, barcha Pro vositalar, reklamasiz tajriba, tezroq ishlov berish va natijalar tarixi.",en:"Unlimited generations, all Pro tools, an ad-free experience, faster processing, and saved history.",ru:"Безлимитные генерации, все Pro-инструменты, отсутствие рекламы, быстрая обработка и история результатов."}},
+  {q:{uz:"AI natijalarini saqlash mumkinmi?",en:"Can I save my AI results?",ru:"Можно ли сохранять результаты?"}, a:{uz:"Ha, Pro rejada barcha natijalar tarix bo'limida avtomatik saqlanadi.",en:"Yes, on the Pro plan all results are automatically saved to your history.",ru:"Да, на тарифе Pro все результаты автоматически сохраняются в истории."}},
+  {q:{uz:"Telefon orqali foydalanish mumkinmi?",en:"Can I use it on my phone?",ru:"Можно ли пользоваться с телефона?"}, a:{uz:"Albatta — platforma birinchi navbatda telefon uchun mo'ljallangan va istalgan brauzerda ishlaydi.",en:"Absolutely — the platform is built mobile-first and works in any browser.",ru:"Конечно — платформа создана в первую очередь для телефонов и работает в любом браузере."}},
+  {q:{uz:"Qaysi tillar mavjud?",en:"Which languages are supported?",ru:"Какие языки поддерживаются?"}, a:{uz:"Hozircha o'zbek, ingliz va rus tillari mavjud. Interfeys tepadagi til tugmasi orqali almashtiriladi.",en:"Uzbek, English and Russian are currently supported. Switch languages using the button at the top.",ru:"Сейчас доступны узбекский, английский и русский. Переключить язык можно кнопкой вверху."}},
+];
+
+/* ================= render ================= */
+function toolCard(t, keyId){
+  return `<div class="card card-hover tool-card reveal in" onclick="openTool('${keyId}')">
+    <div class="tool-icon">${t.icon}</div>
+    <h4 class="tool-name">${t.name[currentLang]}</h4>
+    <p class="tool-desc">${t.desc[currentLang]}</p>
+    <div class="tool-foot">
+      <span class="badge ${t.free?'badge-free':'badge-pro'}">${t.free?dict[currentLang].badge_free:dict[currentLang].badge_pro}</span>
+      <span style="font-size:12px;color:var(--spark);font-weight:600">${dict[currentLang].try_now} →</span>
+    </div>
+  </div>`;
+}
+function renderAiTools(){
+  document.getElementById('aiToolsGrid').innerHTML = aiTools.map(t=>toolCard(t, t.id)).join('');
+}
+let eduTab = 'teacher';
+function renderEduTools(){
+  document.getElementById('eduGrid').innerHTML = eduTools[eduTab].map((t,i)=>toolCard(t, 'edu-'+eduTab+'-'+i)).join('');
+}
+document.querySelectorAll('[data-tab]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-tab]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active'); eduTab = btn.getAttribute('data-tab'); renderEduTools();
+  });
+});
+function renderCreatorTools(){
+  document.getElementById('crGrid').innerHTML = crTools.map((t,i)=>toolCard(t,'cr-'+i)).join('');
+}
+function renderFootball(){
+  document.getElementById('fbNews').innerHTML = fbNewsData.map(n=>`
+    <div class="card reveal in" style="padding:16px;display:flex;justify-content:space-between;align-items:center;gap:10px">
+      <div>
+        <span class="badge badge-pro" style="background:var(--surface-strong);color:var(--text-dim)">${n.tag[currentLang]}</span>
+        <div style="font-weight:600;font-size:14px;margin-top:8px">${n.title[currentLang]}</div>
+      </div>
+      <span style="font-size:11px;color:var(--text-faint);white-space:nowrap">${n.time}</span>
+    </div>`).join('');
+  document.getElementById('fbPlayers').innerHTML = fbPlayers.map(p=>`
+    <div class="card reveal in player-card">
+      <div class="player-avatar">${p.init}</div>
+      <div><div style="font-weight:700;font-size:14px">${p.name}</div><div style="font-size:12px;color:var(--text-dim)">${p.stat}</div></div>
+    </div>`).join('');
+  document.getElementById('fbTools').innerHTML = fbToolsData.map((t,i)=>toolCard(t,'fb-'+i)).join('');
+  document.getElementById('fbGallery').innerHTML = ['⚽','🏟️','🥅','🏆','👟','📣','🟢','🎽','📸'].map(e=>`<div class="gallery-tile reveal in">${e}</div>`).join('');
+}
+document.querySelectorAll('[data-fbtab]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-fbtab]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.getAttribute('data-fbtab');
+    document.getElementById('fbNews').style.display = tab==='news' ? 'grid' : 'none';
+    document.getElementById('fbPlayers').style.display = tab==='players' ? 'grid' : 'none';
+    document.getElementById('fbTools').style.display = tab==='tools' ? 'grid' : 'none';
+    document.getElementById('fbGallery').style.display = tab==='gallery' ? 'grid' : 'none';
+  });
+});
+function renderFaq(){
+  document.getElementById('faqList').innerHTML = faqData.map((f,i)=>`
+    <div class="faq-item" id="faq-${i}">
+      <button class="faq-q" onclick="toggleFaq(${i})">
+        <span>${f.q[currentLang]}</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" id="faq-a-${i}"><div class="faq-a-inner">${f.a[currentLang]}</div></div>
+    </div>`).join('');
+}
+function toggleFaq(i){
+  const item = document.getElementById('faq-'+i);
+  const a = document.getElementById('faq-a-'+i);
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach((el,idx)=>{
+    el.classList.remove('open');
+    document.getElementById('faq-a-'+idx).style.maxHeight = null;
+  });
+  if(!isOpen){ item.classList.add('open'); a.style.maxHeight = a.scrollHeight+'px'; }
+}
+
+/* ================= freemium logic ================= */
+let freeRemaining = 3;
+let history = [];
+let profileName = '';
+function updateProfileName(){
+  profileName = document.getElementById('profileNameInput').value.trim();
+  const avatar = document.getElementById('profileAvatar');
+  avatar.textContent = profileName ? profileName.trim().slice(0,2).toUpperCase() : '?';
+}
+function updateUsageUI(){
+  const wrap = document.getElementById('usagePillWrap');
+  const low = freeRemaining <= 1;
+  wrap.innerHTML = `<div class="usage-pill ${low?'low':''}"><span class="usage-dot"></span>${dict[currentLang].usage_remaining(freeRemaining)}</div>`;
+  document.getElementById('profileUsageCount').textContent = freeRemaining + ' / 3';
+}
+
+/* ================= tool modal flow ================= */
+let activeToolKey = null;
+let activeToolExample = '';
+const toolNameLookup = {};
+[...aiTools.map(t=>[t.id,t]), ...eduTools.teacher.map((t,i)=>['edu-teacher-'+i,t]), ...eduTools.student.map((t,i)=>['edu-student-'+i,t]), ...crTools.map((t,i)=>['cr-'+i,t]), ...fbToolsData.map((t,i)=>['fb-'+i,t])]
+  .forEach(([k,t])=>{ toolNameLookup[k]=t; });
+
+function openTool(key){
+  activeToolKey = key;
+  const t = toolNameLookup[key] || {name:{uz:'AI Vosita',en:'AI Tool',ru:'AI-инструмент'}, icon:'✨'};
+  document.getElementById('toolModalTag').textContent = (t.free===false ? dict[currentLang].badge_pro : dict[currentLang].badge_free).toUpperCase();
+  document.getElementById('toolModalTitle').textContent = t.name[currentLang];
+  document.getElementById('toolInput').value = '';
+  activeToolExample = (t.example && t.example[currentLang]) ? t.example[currentLang] : '';
+  updateExampleHint();
+  resetTool();
+  updateUsageUI();
+  openModal('toolModalBackdrop');
+}
+function updateExampleHint(){
+  const hint = document.getElementById('toolExampleHint');
+  if(activeToolExample){
+    hint.textContent = `💡 ${dict[currentLang].example_label}: ${activeToolExample}`;
+    hint.style.display = 'inline-block';
+  } else {
+    hint.style.display = 'none';
+  }
+}
+function fillExample(){
+  if(!activeToolExample) return;
+  const input = document.getElementById('toolInput');
+  input.value = activeToolExample;
+  clearFieldError();
+  input.focus();
+}
+function clearFieldError(){
+  document.getElementById('toolInputError').style.display = 'none';
+  document.getElementById('toolInput').style.borderColor = '';
+}
+function resetTool(){
+  document.getElementById('toolFormArea').style.display = 'block';
+  document.getElementById('toolResultArea').style.display = 'none';
+  document.getElementById('loadingSkeleton').style.display = 'none';
+  document.getElementById('errorBox').style.display = 'none';
+  document.getElementById('resultText').style.display = 'none';
+  document.getElementById('resultActions').style.display = 'none';
+}
+
+/* Per-tool prompt builders — what actually gets sent to the model, per language */
+const toolPrompts = {
+  uz: (toolLabel, input) => `Sen "${toolLabel}" nomli AI vositasisan, MUHAMMADJONOV platformasi ichida ishlaysan. Foydalanuvchi so'rovi: "${input}". Shu vosita vazifasiga mos, o'zbek tilida, aniq, foydali va tayyor natija ber. Ortiqcha kirish so'zlarsiz, to'g'ridan-to'g'ri natijani yoz.`,
+  en: (toolLabel, input) => `You are the "${toolLabel}" AI tool inside the MUHAMMADJONOV platform. User request: "${input}". Produce a clear, useful, ready-to-use result matching this tool's purpose, in English. Skip preamble — go straight to the result.`,
+  ru: (toolLabel, input) => `Ты — AI-инструмент «${toolLabel}» на платформе MUHAMMADJONOV. Запрос пользователя: «${input}». Дай чёткий, полезный, готовый результат на русском языке, соответствующий назначению этого инструмента. Без вступлений — сразу результат.`,
+};
+
+async function callClaude(promptText){
+  // Calls our own backend (/api/generate), which holds the real Anthropic API key server-side.
+  // The browser never sees the key — see /api/generate.js in this project.
+  const response = await fetch("/api/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt: promptText })
+  });
+  const data = await response.json().catch(()=>({}));
+  if(!response.ok){
+    throw new Error(data.error || ('Server error: ' + response.status));
+  }
+  if(!data.text) throw new Error('Empty response');
+  return data.text;
+}
+
+async function generateResult(){
+  if(freeRemaining <= 0){
+    closeModal('toolModalBackdrop');
+    openModal('upgradeModal');
+    return;
+  }
+  const inputEl = document.getElementById('toolInput');
+  const input = inputEl.value.trim();
+  if(!input){
+    const errEl = document.getElementById('toolInputError');
+    errEl.textContent = {uz:"Iltimos, mavzu yoki matn kiriting.", en:"Please enter a topic or text.", ru:"Пожалуйста, введите тему или текст."}[currentLang];
+    errEl.style.display = 'block';
+    inputEl.style.borderColor = 'var(--danger)';
+    inputEl.focus();
+    return;
+  }
+
+  const t = toolNameLookup[activeToolKey];
+  const toolLabel = t ? t.name[currentLang] : 'AI Tool';
+
+  document.getElementById('toolFormArea').style.display = 'none';
+  document.getElementById('toolResultArea').style.display = 'block';
+  document.getElementById('loadingSkeleton').style.display = 'block';
+  document.getElementById('loadingLabel').textContent = {uz:"AI ishlamoqda…", en:"AI is working…", ru:"AI работает…"}[currentLang];
+  document.getElementById('errorBox').style.display = 'none';
+  document.getElementById('resultText').style.display = 'none';
+  document.getElementById('resultActions').style.display = 'none';
+
+  try{
+    const prompt = toolPrompts[currentLang](toolLabel, input);
+    const resultText = await callClaude(prompt);
+
+    freeRemaining = Math.max(0, freeRemaining - 1);
+    updateUsageUI();
+
+    document.getElementById('resultText').textContent = resultText;
+    document.getElementById('loadingSkeleton').style.display = 'none';
+    document.getElementById('resultText').style.display = 'block';
+    document.getElementById('resultActions').style.display = 'flex';
+
+    history.unshift({tool:toolLabel, time:new Date().toLocaleTimeString(), text:resultText, saved:false});
+    renderHistory();
+  }catch(err){
+    document.getElementById('loadingSkeleton').style.display = 'none';
+    document.getElementById('errorBox').style.display = 'block';
+    const fallback = {
+      uz:"AI bilan bog'lanib bo'lmadi. Internetni tekshiring va qayta urinib ko'ring.",
+      en:"Couldn't reach the AI. Check your connection and try again.",
+      ru:"Не удалось связаться с AI. Проверьте соединение и попробуйте снова."
+    }[currentLang];
+    // Show the server's own message when it gave one (e.g. rate limit), otherwise a generic fallback
+    document.getElementById('errorText').textContent = (err && err.message && !err.message.startsWith('Server error') && err.message !== 'Empty response') ? err.message : fallback;
+  }
+}
+function copyResult(){
+  const text = document.getElementById('resultText').textContent;
+  if(navigator.clipboard){ navigator.clipboard.writeText(text).catch(()=>{}); }
+  toast(dict[currentLang].toast_copied);
+}
+function toggleSaveHistory(idx){
+  history[idx].saved = !history[idx].saved;
+  renderHistory();
+}
+function deleteHistory(idx){
+  history.splice(idx,1);
+  renderHistory();
+}
+function copyHistory(idx){
+  const text = history[idx].text;
+  if(navigator.clipboard){ navigator.clipboard.writeText(text).catch(()=>{}); }
+  toast(dict[currentLang].toast_copied);
+}
+function renderHistory(){
+  const list = document.getElementById('historyList');
+  const empty = document.getElementById('historyEmpty');
+  if(history.length===0){ empty.style.display='block'; list.innerHTML=''; return; }
+  empty.style.display='none';
+  list.innerHTML = history.slice(0,8).map((h,i)=>`
+    <div class="card" style="padding:12px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+        <div style="min-width:0">
+          <div style="font-size:13px;font-weight:600">${h.tool}</div>
+          <div style="font-size:11px;color:var(--text-faint)">${h.time}</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0">
+          <button class="icon-btn" style="width:30px;height:30px" title="Copy" onclick="copyHistory(${i})">📋</button>
+          <button class="icon-btn" style="width:30px;height:30px;${h.saved?'color:var(--spark);border-color:var(--spark)':''}" title="Save" onclick="toggleSaveHistory(${i})">${h.saved?'★':'☆'}</button>
+          <button class="icon-btn" style="width:30px;height:30px" title="Delete" onclick="deleteHistory(${i})">🗑️</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+/* ================= modal helpers ================= */
+function openModal(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(()=>el.classList.remove('show'), 2200);
+}
+function scrollToId(id){ document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'}); }
+
+/* ================= bottom nav active state ================= */
+const bnItems = document.querySelectorAll('.bn-item');
+const sectionIds = ['top','ai','education','football'];
+window.addEventListener('scroll', ()=>{
+  let current = 'home';
+  if(window.scrollY < 200) current='home';
+  else if(document.getElementById('football').getBoundingClientRect().top < 140) current='football';
+  else if(document.getElementById('education').getBoundingClientRect().top < 140) current='tools';
+  else if(document.getElementById('ai').getBoundingClientRect().top < 140) current='ai';
+  bnItems.forEach(el=>el.classList.toggle('active', el.getAttribute('data-bn')===current));
+}, {passive:true});
+
+/* ================= scroll reveal ================= */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:0.12});
+function observeReveals(){ document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el)); }
+
+/* ================= animated counters ================= */
+function animateCounters(){
+  document.querySelectorAll('.stat-num').forEach(el=>{
+    const target = parseInt(el.getAttribute('data-count'),10);
+    let start = 0; const dur = 1400; const t0 = performance.now();
+    function tick(now){
+      const p = Math.min(1,(now-t0)/dur);
+      const eased = 1-Math.pow(1-p,3);
+      el.textContent = Math.round(target*eased).toLocaleString();
+      if(p<1) requestAnimationFrame(tick); else el.textContent = target.toLocaleString()+'+';
+    }
+    requestAnimationFrame(tick);
+  });
+}
+const statObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ animateCounters(); statObserver.disconnect(); } });
+},{threshold:0.4});
+
+/* ================= init ================= */
+window.addEventListener('DOMContentLoaded', ()=>{
+  document.body.id = 'top';
+  applyLang('uz');
+  observeReveals();
+  const statSection = document.querySelector('.stat-num');
+  if(statSection) statObserver.observe(statSection.closest('.card'));
+  document.querySelectorAll('.card').forEach(c=>c.classList.add('reveal','in'));
+});
+</script>
+</body>
+</html>
